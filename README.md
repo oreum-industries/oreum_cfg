@@ -1,8 +1,8 @@
-WIP
+WIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIP
 
 # README.md
 
-Configs, dot files, installation instructions etc. Mostly for Python-based data science work on Mac. Also a pretty good reference for setting up a new machine.
+Configs, dot files, installation instructions etc. Mostly for Python-based data science work on Mac. Also a reference for setting up a new machine.
 
 
 ## Essential Mac Installs
@@ -59,13 +59,27 @@ $> sudo tlmgr install adjustbox bbding collectbox enumitem environ framed import
 
 ### Install nicer PDF notebook rendering
 
-Using https://pypi.org/project/nb-pdf-template/
+Using `nbconvert` templates per https://github.com/ipython/ipython/wiki/Cookbook:%20nbconvert%20templates
 
-Assume inside conda env
+Use template supplied in this repo `templates/classic_mod.tplx`. Depending on where called from, likely need to change filepath.
+
+Use as:
 
 ```zsh
-$> pip install nb_pdf_template
-$> python -m nb_pdf_template.install
+$> jupyter nbconvert --to pdf --template templates/classic_mod.tplx <NOTEBOOK>.ipynb
 ```
 
+I based this on `classic.tplx` from https://github.com/t-makaro/nb_pdf_template (also see https://pypi.org/project/nb-pdf-template/). Would like to use just that but:
 
+1. I want my mods to fontsize etc which I think are better, and
+2. This package hasn't kept up with changes to `nbconvert` and some filepaths are wrong:
+
+    Note as-at 2021-02-24 on v3.0.0 I needed to add a new dir `latex` under nbconvert's package path
+
+    `/Users/jon/opt/anaconda3/envs/<ENV>/lib/python3.8/site-packages/nbconvert/templates/`
+
+    So that this line worked:
+
+    ```{install.py}python
+    dst = os.path.abspath(os.path.join(nbconvert_path, "templates", "latex"))
+    ```
