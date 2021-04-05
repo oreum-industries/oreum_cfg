@@ -1,9 +1,6 @@
-WIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIP
-
 # README.md
 
 Configs, dot files, installation instructions etc. Mostly for Python-based data science work on Mac. Also a reference for setting up a new machine.
-
 
 ## Essential Mac Installs
 
@@ -16,11 +13,8 @@ Just follow the instructions
 Some packages I like to use:
 
 ```bash
-brew install wget htop zsh powerlevel10k hugo parquet-tools direnv
+brew install wget htop zsh powerlevel10k hugo parquet-tools
 ```
-
-
-
 
 ## Useful Mac Installs
 
@@ -46,16 +40,22 @@ Create files per repo like
 $> cat 'eval "$(conda shell.zsh hook)"; conda activate <ENV>' > .envrc
 ```
 
-
 ### Install Tex on Mac
 
 Use BasicTex
 
 ```zsh
 $> brew install --cask basictex
-$> sudo tlmgr install adjustbox bbding collectbox enumitem environ framed import multirow mdframed needspace ntheorem tabu tcolorbox textpos titling titlesec threeparttable tocloft trimspaces varwidth wrapfig collection-fontsrecommended
+$> sudo tlmgr install adjustbox bbding collectbox enumitem environ framed import multirow mdframed needspace ntheorem tabu tcolorbox textpos titling titlesec threeparttable tocloft trimspaces varwidth wrapfig collection-fontsrecommended floatrow
 ```
 
+### Install inkscape on Mac
+
+Needed to scale non-matplotlib images in Notebook (logos / sketches etc)
+
+```zsh
+$> brew install inkscape
+```
 
 ### Install nicer PDF notebook rendering
 
@@ -83,3 +83,12 @@ I based this on `classic.tplx` from https://github.com/t-makaro/nb_pdf_template 
     ```{install.py}python
     dst = os.path.abspath(os.path.join(nbconvert_path, "templates", "latex"))
     ```
+
+## Assorted gotchas rendering Notebooks to PDF
+
+Beware math fonts. `\mathbb`, `\mathcal` render in-browser (html) but dont 
+seem to render in nbconvert to pdf!? Use `\mathfrak` instead
+
+
+https://tex.stackexchange.com/questions/58098/what-are-all-the-font-styles-i-can-use-in-math-mode#58124
+
